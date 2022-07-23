@@ -1,4 +1,4 @@
-const signs = ["rock", "paper", "scissors"];
+const signs = ["Rock", "Paper", "Scissors"];
 let playerScore = 0;
 let computerScore = 0;
 
@@ -9,35 +9,34 @@ function getComputerChoice() {
 }
 
 function playerSelection() {
-    players_choice = prompt("Type: rock, paper or scissors: ").toLowerCase();
-    return players_choice;
+    let players_choice = prompt("Type: Rock, Paper or Scissors: ").toLowerCase();
+    let capitalizedString = players_choice.charAt(0).toUpperCase() + players_choice.slice(1);
+    return capitalizedString;
 }
 
-function playRound(computerSelection, playerChoice) {
-    playerChoice = playerSelection()
-    computerSelection = getComputerChoice()
+function playRound(computerSelection=playerSelection(), playerChoice=getComputerChoice()) {
 
-    if (computerSelection === "rock" && playerChoice === "scissors") {
-        computerScore++
-        return `You Lose! ${computerSelection} beats ${playerChoice}`
-    } else if (computerSelection === "scissors" && playerChoice === "paper") {
-        computerScore++
-        return `You Lose! ${computerSelection} beats ${playerChoice}`
+    if (computerSelection === "Rock" && playerChoice === "Scissors") {
+        computerScore++;
+        return `You Lose! ${computerSelection} beats ${playerChoice}`;
+    } else if (computerSelection === "Scissors" && playerChoice === "Paper") {
+        computerScore++;
+        return `You Lose! ${computerSelection} beats ${playerChoice}`;
     }
-     else if (computerSelection === "paper" && playerChoice === "rock") {
-        computerScore++
-        return `You Lose! ${computerSelection} beats ${playerChoice}` 
-     } else if (computerSelection === "paper" && playerChoice === "scissors") {
-        playerScore++
-        return `You Win! ${playerChoice} beats ${computerSelection}`
-     } else if (computerSelection === "rock" && playerChoice === "paper") {
-        playerScore++
-        return `You Win! ${playerChoice} beats ${computerSelection}`
-     } else if (computerSelection === "scissors" && playerChoice === "rock") {
-        playerScore++
-        return `You Win! ${playerChoice} beats ${computerSelection}`
+     else if (computerSelection === "Paper" && playerChoice === "Rock") {
+        computerScore++;
+        return `You Lose! ${computerSelection} beats ${playerChoice}` ;
+     } else if (computerSelection === "Paper" && playerChoice === "Scissors") {
+        playerScore++;
+        return `You Win! ${playerChoice} beats ${computerSelection}`;
+     } else if (computerSelection === "Rock" && playerChoice === "Paper") {
+        playerScore++;
+        return `You Win! ${playerChoice} beats ${computerSelection}`;
+     } else if (computerSelection === "Scissors" && playerChoice === "Rock") {
+        playerScore++;
+        return `You Win! ${playerChoice} beats ${computerSelection}`;
      } else {
-        return `It's a draw!`
+        return `It's a draw!`;
      }
 }
 
@@ -45,10 +44,9 @@ function game() {
     for (i = 0; i < 5; i++) {
         console.log(playRound())
     }
-    console.log(computerScore, playerScore)
     if (computerScore > playerScore) {
-        console.log("Computer wins in best of 5!")
+        console.log("Computer wins in the best of 5!")
     } else {
-        console.log("You win in best of 5!")
+        console.log("You win in the best of 5!")
     }
 }
