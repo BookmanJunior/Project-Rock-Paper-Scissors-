@@ -1,11 +1,12 @@
-const buttons = document.querySelector('.signs');
 const signs = ["Rock", "Paper", "Scissors"];
 let playerScore = 0;
 let computerScore = 0;
 
+const buttons = document.querySelector('.signs');
+const result = document.querySelector('.result h3');
 
 // Event listeners
-buttons.addEventListener('click', playGame);
+buttons.addEventListener('click', playRound);
 
 
 // returns random number 
@@ -22,18 +23,18 @@ function playRound(e) {
     // If either selection is greater than the other selection they win. Except in a few cases.
     if (playerSelection === 2 && computerSelection === 0) {
         computerScore++;
-        console.log( `You Lose! ${signs[computerSelection]} beats ${signs[playerSelection]}`);
+        result.textContent = `You Lose! ${signs[computerSelection]} beats ${signs[playerSelection]}`;
     } else if (playerSelection === 0 && computerSelection === 2) {
         playerScore++;
-        console.log( `You Win! ${signs[playerSelection]} beats ${signs[computerSelection]}`);
+        result.textContent =  `You Win! ${signs[playerSelection]} beats ${signs[computerSelection]}`;
     } else if (playerSelection > computerSelection) {
         playerScore++
-        console.log( `You Win! ${signs[playerSelection]} beats ${signs[computerSelection]}`);
+        result.textContent =  `You Win! ${signs[playerSelection]} beats ${signs[computerSelection]}`;
     } else if (playerSelection < computerSelection) {
         computerScore++;
-        console.log(`You Lose! ${signs[computerSelection]} beats ${signs[playerSelection]}`);
+        result.textContent = `You Lose! ${signs[computerSelection]} beats ${signs[playerSelection]}`;
     } else {
-        console.log("It's a tie!");
+        result.textContent = "It's a tie!";
     }
 
 };
