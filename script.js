@@ -2,71 +2,68 @@
 const signs = ["Rock", "Paper", "Scissors"];
 let playerScore = 0;
 let computerScore = 0;
-let playerChoice;
 
 const buttons = document.querySelector(".signs");
-const result = document.querySelector(".result h3");
-const restartBtn = document.querySelector(".resetBtn");
+const result = document.querySelector(".result h2");
+const restartBtn = document.querySelector(".restartBtn");
 const displayPlayerScore = document.getElementById("playerScore");
 const displayComputerScore = document.getElementById("computerScore");
+const playerSignImage = document.querySelector(".player-sign")
+const computerSignImage = document.querySelector(".computer-sign")
 
-// Event listeners
-buttons.addEventListener("click", getPlayerChoice);
-buttons.addEventListener("click", playGame);
-restartBtn.addEventListener("click", () => {
+
+console.log(playerSignImage.src);
+
+buttons.addEventListener('click', playRound);
+
+// Restart game
+restartBtn.addEventListener('click', () => {
+  // Reset Score
   playerScore = 0;
   computerScore = 0;
-  displayPlayerScore.textContent = `Your Score: ${playerScore}`;
-  displayComputerScore.textContent = `Computer Score:  ${computerScore}`;
+  result.textContent = 'Rock, Paper or Scissors?';
+  displayPlayerScore.textContent = `Score: ${playerScore}`;
+  displayComputerScore.textContent = `Score: ${computerScore}`;
+
+  // Reset sign images
+  playerSignImage.src = 'images/Rock.png'
+  computerSignImage.src = 'images/Rock.png'
 });
+
+
+function playRound(e) {
+    const playerSelection = parseInt(e.target.id)
+    const computerSelection = getComputerChoice()
+
+    // Check if either of players reached 5 points.
+    if (playerSelection === 2 && computerSelection === 0) {
+        incrementComputerScore(playerSelection, computerSelection);
+    } else if (playerSelection === 0 && computerSelection === 2) {
+        incrementPlayerScore(playerSelection, computerSelection);
+    } else if (playerSelection > computerSelection) {
+        incrementPlayerScore(playerSelection, computerSelection);
+    } else if (playerSelection < computerSelection) {
+        incrementComputerScore(playerSelection, computerSelection);
+    } else {
+        result.textContent = "It's a tie!";
+    }
+}
 
 // returns random number
 function getComputerChoice() {
-  randomChoice = Math.floor(Math.random() * 3);
-  return randomChoice;
+    randomChoice = Math.floor(Math.random() * 3);
+    computerSignImage.src = computerSignImage.src.replace("Rock", `${signs[randomChoice]}`)
+    return randomChoice;
 }
 
-// Get players input
-function getPlayerChoice(e) {
-  let button = e.target.textContent;
-  switch (button) {
-    case "Rock":
-      return (playerChoice = 0);
-    case "Paper":
-      return (playerChoice = 1);
-    case "Scissors":
-      return (playerChoice = 2);
-  }
-}
-
-function playRound(playerSelection, computerSelection) {
-  // If either selection is greater than the other they win. Except in a few cases.
-
-  // Check if either of players reached 5 points.
-if (playerSelection === 2 && computerSelection === 0) {
-    computerScore++;
-    displayComputerScore.textContent = `Computer's Score: ${computerScore}`;
-    result.textContent = `You Lose! ${signs[computerSelection]} beats ${signs[playerSelection]}`;
-} else if (playerSelection === 0 && computerSelection === 2) {
+function incrementPlayerScore(playerChoice, computerChoice) {
     playerScore++;
-    displayPlayerScore.textContent = `Your Score: ${playerScore}`;
-    result.textContent = `You Win! ${signs[playerSelection]} beats ${signs[computerSelection]}`;
-} else if (playerSelection > computerSelection) {
-    playerScore++;
-    displayPlayerScore.textContent = `Your Score: ${playerScore}`;
-    result.textContent = `You Win! ${signs[playerSelection]} beats ${signs[computerSelection]}`;
-} else if (playerSelection < computerSelection) {
-    computerScore++;
-    displayComputerScore.textContent = `Computer's Score: ${computerScore}`;
-    result.textContent = `You Lose! ${signs[computerSelection]} beats ${signs[playerSelection]}`;
-} else {
-    result.textContent = "It's a tie!";
-}
+    displayPlayerScore.textContent = `Score: ${playerScore}`;
+    result.textContent = `You Win! ${signs[playerChoice]} beats ${signs[computerChoice]}`;
 }
 
-function playGame() {
-  playRound(
-    (playerSelection = playerChoice),
-    (computerSelection = getComputerChoice())
-  );
+function incrementComputerScore(playerChoice, computerChoice) {
+    computerScore++;
+    displayComputerScore.textContent = `Score: ${computerScore}`;
+    result.textContent = `You Lose! ${signs[computerChoice]} beats ${signs[playerChoice]}`
 }

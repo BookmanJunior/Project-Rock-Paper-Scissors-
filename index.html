@@ -1,20 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors Game</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
+    <div class="result">
+        <h2>Rock, Paper or Scissors?</h2>
+      </div>
     <div class="container">
-        <div class="signs">
-            <button id="0">Rock</button>
-            <button id="1">Paper</button>
-            <button id="2">Scissors</button>
-        </div>
+        <div class="sign-imgs">
+        <img src="images/Rock.png" class="player-sign" alt="sign">
+        <p class="VS">VS</p>
+        <img src="images/Rock.png" class="computer-sign" alt="sign">
     </div>
-</body>
+      <div class="scoreboard-container">
+        <div class="player">
+          <p>You</p>
+          <p id="playerScore">Score: 0</p>
+        </div>
+        <div class="computer">
+          <p>Computer</p>
+          <p id="computerScore">Score: 0</p>
+        </div>
+      </div>
+      <div class="signs">
+        <button id="0">Rock</button>
+        <button id="1">Paper</button>
+        <button id="2">Scissors</button>
+      </div>
+      <div class="restartBtn-container">
+        <button class="restartBtn">Restart Game</button>
+      </div>
+    </div>
+  </body>
 </html>
