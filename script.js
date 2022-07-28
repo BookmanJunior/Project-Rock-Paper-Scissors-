@@ -12,8 +12,6 @@ const playerSignImage = document.querySelector(".player-sign")
 const computerSignImage = document.querySelector(".computer-sign")
 
 
-console.log(playerSignImage.src);
-
 buttons.addEventListener('click', playRound);
 
 // Restart game
@@ -33,6 +31,9 @@ restartBtn.addEventListener('click', () => {
 
 function playRound(e) {
     const playerSelection = parseInt(e.target.id)
+    console.log(e.target)
+    // Change players sign
+    playerSignImage.src = `images/${signs[playerSelection]}.png`;
     const computerSelection = getComputerChoice()
 
     // Check if either of players reached 5 points.
@@ -52,7 +53,7 @@ function playRound(e) {
 // returns random number
 function getComputerChoice() {
     randomChoice = Math.floor(Math.random() * 3);
-    computerSignImage.src = computerSignImage.src.replace("Rock", `${signs[randomChoice]}`)
+    computerSignImage.src = `images/${signs[randomChoice]}.png`
     return randomChoice;
 }
 
