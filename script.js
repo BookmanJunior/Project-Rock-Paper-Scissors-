@@ -15,6 +15,8 @@ const startNewGameBtn = document.getElementById("playAgain");
 let playerScore = 0;
 let computerScore = 0;
 let winner = "";
+
+
 // Event Listeners
 buttons.addEventListener("click", playRound);
 restartBtn.addEventListener("click", restartGame);
@@ -25,10 +27,6 @@ modal.addEventListener("click", closeModal);
 
 // Functions
 function playRound(e) {
-  if (playerScore === 5 || computerScore === 5) {
-    announceGameWinner();
-    return;
-  }
   // Prevents clicking in-between buttons
   if (e.target.type === "submit") {
     const playerSelection = parseInt(e.target.id);
@@ -39,7 +37,6 @@ function playRound(e) {
   }
 
   if (playerScore === 5 || computerScore === 5) {
-    modal.style.display = 'block';
     announceGameWinner();
     return;
   }
@@ -86,9 +83,11 @@ function announceRoundWinner(playerChoice, computerChoice, winner) {
 
 function announceGameWinner() {
   if (playerScore === 5) {
+    modal.style.display = 'block';
     modalWinner.textContent = "You got 5 points!\n You Win!";
     modalWinner.style.color = 'green';
   } else {
+    modal.style.display = 'block';
     modalWinner.textContent = "Computer got 5 points!\n You Lose!";
     modalWinner.style.color = 'red';
   };
