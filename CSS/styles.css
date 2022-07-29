@@ -3,14 +3,16 @@ body {
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    min-width: 500px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    min-width: 500px;
+    flex: 1;
 }
 
 .header .result {
@@ -21,11 +23,6 @@ body {
     display: flex;
     justify-content: space-between;
 }
-
-/* .player,
-.computer {
-
-} */
 
 .signs {
     display: flex;
@@ -45,6 +42,9 @@ body {
     margin-top: 10px;
 }
 
+.restartBtn-container {
+    min-height: 45px;
+}
 .restartBtn {
     display: none;
     flex: 1;
@@ -70,15 +70,20 @@ button {
     outline: none;
 }
 
+button:active {
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    /* Lowering the shadow */
+}
 
 img {
     max-width: 150px;
     min-height: 97.43px;
 }
 
-
-footer {
-    margin-top: auto;
+a {
+    text-decoration: none;
 }
 
 @keyframes modalopen {
