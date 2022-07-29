@@ -1,6 +1,7 @@
 // Global variables
 const signs = ["Rock", "Paper", "Scissors"];
 const buttons = document.querySelector(".signs");
+const signBtns = buttons.getElementsByTagName("button");
 const result = document.querySelector(".result");
 const restartBtn = document.querySelector(".restartBtn");
 const displayPlayerScore = document.getElementById("playerScore");
@@ -8,7 +9,7 @@ const displayComputerScore = document.getElementById("computerScore");
 const playerSignImage = document.querySelector(".player-sign");
 const computerSignImage = document.querySelector(".computer-sign");
 const modal = document.getElementById("modal");
-const modalCloseBtn = document.getElementById('closeBtn');
+const modalCloseBtn = document.getElementById("closeBtn");
 const modalWinner = document.querySelector(".game-result");
 const modalContent = document.getElementById("modal-body");
 const startNewGameBtn = document.getElementById("playAgain");
@@ -16,28 +17,27 @@ let playerScore = 0;
 let computerScore = 0;
 let winner = "";
 
-
 // Event Listeners
 buttons.addEventListener("click", playRound);
 restartBtn.addEventListener("click", restartGame);
 startNewGameBtn.addEventListener("click", restartGame);
-modalCloseBtn.addEventListener("click", () => modal.style.display = "none");
+modalCloseBtn.addEventListener("click", () => (modal.style.display = "none"));
 modal.addEventListener("click", closeModal);
-
 
 // Functions
 function playRound(e) {
-  // Prevents clicking in-between buttons
+  // Prevents clicking on empty space between buttons
   if (e.target.type === "submit") {
     const playerSelection = parseInt(e.target.id);
     const computerSelection = getComputerChoice();
     getRoundWinner(playerSelection, computerSelection);
     announceRoundWinner(playerSelection, computerSelection, winner);
-    restartBtn.style.display = "initial";
+    restartBtn.style.display = "block";
   }
 
   if (playerScore === 5 || computerScore === 5) {
     announceGameWinner();
+    Array.from(signBtns).forEach((button) => (button.disabled = true));
     return;
   }
 }
@@ -83,15 +83,15 @@ function announceRoundWinner(playerChoice, computerChoice, winner) {
 
 function announceGameWinner() {
   if (playerScore === 5) {
-    modal.style.display = 'block';
+    modal.style.display = "block";
     modalWinner.textContent = "You got 5 points!\n You Win!";
-    modalWinner.style.color = 'green';
+    modalWinner.style.color = "green";
   } else {
-    modal.style.display = 'block';
+    modal.style.display = "block";
     modalWinner.textContent = "Computer got 5 points!\n You Lose!";
-    modalWinner.style.color = 'red';
-  };
-};
+    modalWinner.style.color = "red";
+  }
+}
 
 function restartGame() {
   // Reset Score
@@ -111,12 +111,15 @@ function restartGame() {
   // Hide restart button
   restartBtn.style.display = "none";
 
+  // Enable Sign Buttons
+  Array.from(signBtns).forEach((button) => (button.disabled = false));
+
   // Close modal
   modal.style.display = "none";
 }
 
 function closeModal(e) {
-    if(e.target.id === 'modal') {
-        modal.style.display = 'none';
-    }
+  if (e.target.id === "modal") {
+    modal.style.display = "none";
+  }
 }
