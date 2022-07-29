@@ -1,18 +1,14 @@
 body {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
     height: 100vh;
     margin: 0px;
     padding: 0px;
-    box-sizing: border-box;
-    background-color: aliceblue;
-    justify-content: center;
 }
 
 .container {
-    min-width: 450px;
+    min-width: 500px;
     display: flex;
     flex-direction: column;
 }
@@ -22,17 +18,15 @@ body {
     justify-content: space-between;
 }
 
-.player,
+/* .player,
 .computer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+
+} */
 
 .signs {
     display: flex;
     gap: 2em;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .sign-imgs {
@@ -43,11 +37,13 @@ body {
 
 .restartBtn-container {
     display: flex;
+    justify-content: center;
     margin-top: 10px;
 }
 
 .restartBtn {
-    flex: 1;
+    display: none;
+    margin-right: 25px;
 }
 
 .computer-sign {
@@ -59,11 +55,19 @@ body {
 }
 
 button {
-    padding: 8px 16px;
+    padding: 8px 20px;
     font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+button:hover {
+    background: purple;
+    color: white;
 }
 
 img {
     max-width: 150px;
-    height: auto;
+    min-height: 97.43px;
 }
