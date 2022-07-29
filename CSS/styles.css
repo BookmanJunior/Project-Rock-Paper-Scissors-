@@ -1,0 +1,133 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    min-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header .result {
+    text-align: center;
+}
+
+.scoreboard-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .player,
+.computer {
+
+} */
+
+.signs {
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+}
+
+.sign-imgs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.restartBtn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.restartBtn {
+    display: none;
+    margin-right: 25px;
+}
+
+.computer-sign {
+    transform: scaleX(-1);
+}
+
+.VS {
+    align-self: center;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.modal-content {
+    background-color: ghostwhite;
+    border-radius: 8px;
+    margin: 20% auto;
+    max-width: 25%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+    animation-name: modalopen;
+    animation-duration: 0.5s;
+    padding: 10px 20px;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.modal-body {
+    text-align: center;
+}
+
+.close-btn {
+    display: flex;
+    border-radius: 50%;
+    background-color: #eee;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    font-weight: 300;
+    color: grey;
+    cursor: pointer;
+}
+
+button {
+    padding: 8px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+button:hover {
+    background: purple;
+    color: white;
+}
+
+img {
+    max-width: 150px;
+    min-height: 97.43px;
+}
+
+
+footer {
+    margin-top: auto;
+}
+
+@keyframes modalopen {
+    from {opacity: 0}
+    to {opacity: 1}
+}

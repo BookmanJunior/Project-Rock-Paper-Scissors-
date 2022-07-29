@@ -1,12 +1,15 @@
 // Global variables
 const signs = ["Rock", "Paper", "Scissors"];
 const buttons = document.querySelector(".signs");
-const result = document.querySelector(".result h2");
+const result = document.querySelector(".result");
 const restartBtn = document.querySelector(".restartBtn");
 const displayPlayerScore = document.getElementById("playerScore");
 const displayComputerScore = document.getElementById("computerScore");
 const playerSignImage = document.querySelector(".player-sign");
 const computerSignImage = document.querySelector(".computer-sign");
+const modal = document.getElementById('modal');
+const modalCloseBtn = document.getElementById('closeBtn');
+const modalWinner = document.querySelector(".game-result")
 let playerScore = 0;
 let computerScore = 0;
 let winner = "";
@@ -14,6 +17,7 @@ let winner = "";
 // Event Listeners
 buttons.addEventListener("click", playRound);
 restartBtn.addEventListener("click", restartGame);
+modalCloseBtn.addEventListener("click", () => modal.style.display = "none");
 
 // Functions
 function playRound(e) {
@@ -31,6 +35,7 @@ function playRound(e) {
   }
 
   if (playerScore === 5 || computerScore === 5) {
+    modal.style.display = 'block';
     announceGameWinner();
     return;
   }
@@ -76,10 +81,14 @@ function announceRoundWinner(playerChoice, computerChoice, winner) {
 }
 
 function announceGameWinner() {
-  playerScore === 5
-    ? (result.textContent = "You got 5 points! You Win!")
-    : (result.textContent = "Computer got 5 points! You Lose!");
-}
+  if (playerScore === 5) {
+    modalWinner.textContent = "You got 5 points! You Win!";
+    modalWinner.style.color = 'green';
+  } else {
+    modalWinner.textContent = "Computer got 5 points! You Lose!";
+    modalWinner.style.color = 'red';
+  };
+};
 
 function restartGame() {
   // Reset Score
